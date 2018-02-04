@@ -1,0 +1,15 @@
+FROM ubuntu:16.04
+
+ARG TRAVIS_JOB_NUMBER 
+
+# Setup
+RUN apt-get update -y -qq
+RUN apt-get install -y apt-utils git perl make tar -qq
+RUN mkdir -p /src/
+RUN git clone https://github.com/aymara/SVMTool /src/SVMTool-1.3.1
+
+# Build
+WORKDIR /src/SVMTool-1.3.1
+RUN perl Makefile.PL
+WORKDIR /src
+RUN tar cvzf SVMTool-1.3.1.tgz SVMTool-1.3.1
