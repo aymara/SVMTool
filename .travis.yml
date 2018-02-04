@@ -5,10 +5,10 @@ services:
 before_install:
 - docker pull ubuntu:16.04
 script:
-- docker build --tag SVMTool-ubuntu16 --build-arg BINTRAYKEY=$BINTRAYKEY --build-arg
+- docker build --tag svmtool-ubuntu16 --build-arg BINTRAYKEY=$BINTRAYKEY --build-arg
   TRAVIS_JOB_NUMBER=$TRAVIS_JOB_NUMBER -f ./Dockerfile-ubuntu16.04 .
 after_success:
-- docker run -t -d SVMTool-ubuntu16
+- docker run -t -d svmtool-ubuntu16
 - docker cp $(docker ps -n 1 -q):/src/SVMTool-1.3.1.tgz $HOME/SVMTool-1.3.1.tgz
 before_deploy:
 - git config --local user.name "Gael de Chalendar"
